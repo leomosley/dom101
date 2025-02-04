@@ -96,11 +96,11 @@ function reverseList(query) {
   const list = document.querySelector(query);
 
   if (list instanceof HTMLUListElement || list instanceof HTMLOListElement) {
-    const reversed = [...list.children].reverse();
-    list.innerHTML = "";
+    const children = list.children;
 
-    for (const li of reversed) {
-      list.appendChild(li);
+    for (const li of children) {
+      const lastChild = children[children.length - 1];
+      li.insertAdjacentElement("beforebegin", lastChild);
     }
 
     return list;
